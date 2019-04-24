@@ -7,9 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Furniture extends Model
 {
     protected $fillable = [
-        'width', 'height', 'length', 'colour', 'type', 'price',
+        'name', 'width', 'height', 'length', 'colour', 'type', 'price',
     ];
 
-    return $this->belongsToMany('App\Room');
-    return $this->belongsToMany('App\Order');
+    public function rooms()
+    {
+    	return $this->belongsToMany('App\Room');
+    }
+
+    public function orders()
+    {
+    	return $this->belongsToMany('App\Order');
+    }
 }

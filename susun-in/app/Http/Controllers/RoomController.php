@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Room;
+use App\House;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
@@ -12,9 +13,10 @@ class RoomController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($house_id)
     {
-        //
+        $rooms = App\House::find($house_id)->rooms;
+        return view('detail_house', compact('rooms'));
     }
 
     /**
@@ -24,7 +26,7 @@ class RoomController extends Controller
      */
     public function create()
     {
-        //
+        return view('create_room');;
     }
 
     /**
@@ -35,7 +37,13 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $room = new Room;
+        $room->name = $request->name;
+        $room->width = $request->width;
+        $room->length = $request->length;
+        $room->height = $request->height;
+        $room->colour = $request->colour;
+        return redirect(route('room.index'));
     }
 
     /**
@@ -44,9 +52,9 @@ class RoomController extends Controller
      * @param  \App\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function show(Room $room)
+    public function show()
     {
-        //
+        return redirect(route('room.detail'));
     }
 
     /**
@@ -55,9 +63,10 @@ class RoomController extends Controller
      * @param  \App\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function edit(Room $room)
+    public function edit($room_id)
     {
-        //
+        $room = App\Room::find($room_id);
+        return view('edit_room', compact('room'));
     }
 
     /**
@@ -78,8 +87,9 @@ class RoomController extends Controller
      * @param  \App\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Room $room)
+    public function destroy($room_id)
     {
-        //
+        App\Room::destroy($room_id);
+        return redirect(route('house.detail'));
     }
 }

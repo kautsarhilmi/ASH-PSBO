@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Furniture;
+use App\Room;
 use Illuminate\Http\Request;
 
 class FurnitureController extends Controller
@@ -12,9 +13,10 @@ class FurnitureController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($room_id)
     {
-        //
+        $furnitures = App\Room::find($room_id)->furnitures;
+        return view('detail_room', compact('furnitures'));
     }
 
     /**
@@ -35,7 +37,14 @@ class FurnitureController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $furniture = new Furniture;
+        $furniture->name = $request->name;
+        $furniture->width = $request->width;
+        $furniture->height = $request->height;
+        $furniture->length = $request->length;
+        $furniture->colour = $request->colour;
+        $furniture->type = $request->type;
+        $furniture->price = $request->price;
     }
 
     /**
@@ -46,7 +55,9 @@ class FurnitureController extends Controller
      */
     public function show(Furniture $furniture)
     {
-        //
+        $room = App\Room::find($room_id);
+        $furnitures = $room->furnitures;
+        return view('detail_room', compact('furnitures'));
     }
 
     /**

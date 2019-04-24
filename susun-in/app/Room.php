@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Room extends Model
 {
     protected $fillable = [
-        'name',
+        'name','width','length','height','colour'
     ];
 
     //
@@ -17,6 +17,9 @@ class Room extends Model
         return $this->belongsTo('App\House');
     }
 
-    return $this->belongsToMany('App\Furniture', 'furniture_room', 'room_id', 'furniture_id')
-    	->as('possession')->withPivot('quantity');;
+    public function furnitures()
+    {
+        return $this->belongsToMany('App\Furniture', 'furniture_room', 'room_id', 'furniture_id')
+        	->as('possession')->withPivot('quantity');;
+    }
 }

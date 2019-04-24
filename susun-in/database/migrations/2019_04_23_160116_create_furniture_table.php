@@ -16,6 +16,7 @@ class CreateFurnitureTable extends Migration
         Schema::create('furniture', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->string('name');
             $table->float('width');
             $table->float('height');
             $table->float('length');

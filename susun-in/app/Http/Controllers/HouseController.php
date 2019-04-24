@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\House;
+use App\User;
 use Illuminate\Http\Request;
 
 class HouseController extends Controller
@@ -12,9 +13,10 @@ class HouseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($user_id)
     {
-        //
+        $houses = App\User::find($user_id)->houses;
+        return view('dashboard', compact('houses'));
     }
 
     /**
@@ -24,7 +26,7 @@ class HouseController extends Controller
      */
     public function create()
     {
-        //
+        return view('create_house');
     }
 
     /**
@@ -33,9 +35,13 @@ class HouseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request, $user_id)
+    {   
+        $user = App\User::find($user_id);
+        $house = new House;
+        $house->name = $request->name;
+        $user->houses()->save($house);
+        return redirect(route('dashboard.index'));
     }
 
     /**
@@ -44,9 +50,9 @@ class HouseController extends Controller
      * @param  \App\House  $house
      * @return \Illuminate\Http\Response
      */
-    public function show(House $house)
+    public function show()
     {
-        //
+        return redirect(route('house.detail'));
     }
 
     /**
@@ -55,9 +61,10 @@ class HouseController extends Controller
      * @param  \App\House  $house
      * @return \Illuminate\Http\Response
      */
-    public function edit(House $house)
+    public function edit($house_id)
     {
-        //
+        $house = App\House::find($house_id);
+        return view('edit_house', compact('house'));
     }
 
     /**
@@ -78,8 +85,9 @@ class HouseController extends Controller
      * @param  \App\House  $house
      * @return \Illuminate\Http\Response
      */
-    public function destroy(House $house)
+    public function destroy($house_id)
     {
-        //
+        App\House::destroy($house_id);
+        return redirect(route('dashboard.index'));
     }
 }
