@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Room extends Model
 {
     protected $fillable = [
-        'name','width','length','height','colour'
+        'name','width','length','height','colour','type'
     ];
 
     //
@@ -20,6 +20,10 @@ class Room extends Model
     public function furnitures()
     {
         return $this->belongsToMany('App\Furniture', 'furniture_room', 'room_id', 'furniture_id')
-        	->as('possession')->withPivot('quantity');;
+        	->withPivot('quantity')->withTimestamps();
+    }
+    public function tags()
+    {
+        return $this->belongsToMany('App\Furniture', 'room_tag', 'room_id', 'tag_id');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFurnitureTable extends Migration
+class CreateFurnitureRoomTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,13 @@ class CreateFurnitureTable extends Migration
      */
     public function up()
     {
-        Schema::create('furniture', function (Blueprint $table) {
+        Schema::create('furniture_room', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('furniture_id');
+            $table->unsignedBigInteger('room_id');
+            $table->foreign('furniture_id')->references('id')->on('furnitures');
+            $table->foreign('room_id')->references('id')->on('rooms');
             $table->timestamps();
-            $table->string('name');
-            $table->float('width');
-            $table->float('height');
-            $table->float('length');
-            $table->string('colour');
-            $table->string('type');
-            $table->integer('price');
         });
     }
 
@@ -33,6 +30,6 @@ class CreateFurnitureTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('furniture');
+        Schema::dropIfExists('furniture_room');
     }
 }

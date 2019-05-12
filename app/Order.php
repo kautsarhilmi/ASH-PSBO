@@ -13,6 +13,6 @@ class Order extends Model
     public function furnitures()
     {
     	return $this->belongsToMany('App\Furniture', 'furniture_order', 'order_id', 'furniture_id')
-    	->as('order_line')->withPivot('quantity');;
+    		->withPivot('quantity')->withTimestamps();
     }
 }

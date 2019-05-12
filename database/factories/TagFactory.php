@@ -2,11 +2,11 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\House;
+use App\Tag;
 use Faker\Generator as Faker;
 
-$factory->define(House::class, function (Faker $faker) {
+$factory->define(Tag::class, function (Faker $faker) {
     return [
-        'name' => $faker->company,
+        //
     ];
 });

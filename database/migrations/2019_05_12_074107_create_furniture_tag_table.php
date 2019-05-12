@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRoomsTable extends Migration
+class CreateFurnitureTagTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateRoomsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rooms', function (Blueprint $table) {
+        Schema::create('furniture_tag', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('furniture_id');
+            $table->unsignedBigInteger('tag_id');
+            $table->foreign('furniture_id')->references('id')->on('furnitures');
+            $table->foreign('tag_id')->references('id')->on('tags');
             $table->timestamps();
-            $table->string('name');
-            $table->float('width');
-            $table->float('height');
-            $table->float('length');
-            $table->string('colour');
         });
     }
 
@@ -31,6 +30,6 @@ class CreateRoomsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rooms');
+        Schema::dropIfExists('furniture_tag');
     }
 }

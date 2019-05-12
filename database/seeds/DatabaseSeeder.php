@@ -12,6 +12,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
-        factory(App\User::class, 10)->create();
+
+        // seeding the users, houses, and rooms table by creating room for each
+        // house for each user
+        factory(App\User::class, 3)->create()->each(function ($user) {
+            $user->houses()->saveMany(factory(App\House::class, 2)->create()->each(function ($house) {
+                $house->rooms()->saveMany(factory(App\Room::class, 3)->create());
+            }));
+        });
     }
 }
