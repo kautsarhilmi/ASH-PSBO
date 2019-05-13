@@ -35,6 +35,14 @@ Route::get('contact', function () {
     return view('contact');
 });
 
+Route::get('login-page', function () {
+    return view('login');
+});
+
+Route::get('home', function () {
+    return view('home');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
