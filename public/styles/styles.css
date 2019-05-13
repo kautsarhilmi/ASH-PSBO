@@ -22,6 +22,14 @@ width: 400px;
 background-color: rgba(0,0,0,0.5) !important;
 }
 
+.card1{
+    height: 470px;
+    margin-top: 9%;
+    margin-bottom: auto;
+    width: 400px;
+    background-color: rgba(0,0,0,0.5) !important;
+    }
+
 .social_icon span{
 font-size: 60px;
 margin-left: 10px;
@@ -29,7 +37,7 @@ color:  #fe4c50;
 }
 
 .social_icon span:hover{
-color: white;
+color: black;
 cursor: pointer;
 }
 
