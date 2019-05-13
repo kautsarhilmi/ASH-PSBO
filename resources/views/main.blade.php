@@ -22,31 +22,31 @@
 						<ul class="p-b-54">
 							<li class="p-t-4">
 								<a href="#" class="s-text13 active1">
-									All
+									Bed Room
 								</a>
 							</li>
 
 							<li class="p-t-4">
 								<a href="#" class="s-text13">
-									Women
+									Living Room
 								</a>
 							</li>
 
 							<li class="p-t-4">
 								<a href="#" class="s-text13">
-									Men
+									Kitchen
 								</a>
 							</li>
 
 							<li class="p-t-4">
 								<a href="#" class="s-text13">
-									Kids
+									Bathroom
 								</a>
 							</li>
 
 							<li class="p-t-4">
 								<a href="#" class="s-text13">
-									Accesories
+									Out Door
 								</a>
 							</li>
 						</ul>
