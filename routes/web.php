@@ -11,17 +11,9 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
+// Route::get('dashboard-page', function () {
+//     return view('dashboard');
 // });
-
-Route::get('/', function () {
-    return view('main');
-});
-
-Route::get('dashboard-page', function () {
-    return view('dashboard');
-});
 
 Route::get('promo', function () {
     return view('promo');
@@ -45,7 +37,7 @@ Route::get('home', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/dashboard', 'HouseController@index')->name('dashboard.index');
 
