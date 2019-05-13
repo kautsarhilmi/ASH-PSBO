@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\House;
 use App\User;
 use Illuminate\Http\Request;
+use Auth;
 
 class HouseController extends Controller
 {
@@ -13,9 +14,9 @@ class HouseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($user_id)
-    {
-        $houses = App\User::find($user_id)->houses;
+    public function index()
+    {   
+        $houses = Auth::user()->houses;
         return view('dashboard', compact('houses'));
     }
 
