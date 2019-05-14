@@ -4078,8 +4078,11 @@ RESPONSIVE  RESPONSIVE  RESPONSIVE  RESPONSIVE   RESPONSIVE
 	}
 
 	footer {
-		padding-right: 0 !important;
-		padding-left: 0 !important;
+		position: absolute;
+		bottom: 0;
+		width: 644px;
+		height: 20px;
+		margin: 0 auto;
 	}
 }
 
