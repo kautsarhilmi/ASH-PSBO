@@ -21,8 +21,6 @@ Route::get('about', function () {
 Route::get('contact', function () {
     return view('contact');
 });
-<<<<<<< HEAD
-=======
 
 Route::get('login-page', function () {
     return view('login');
@@ -32,7 +30,6 @@ Route::get('home', function () {
     return view('home');
 });
 
->>>>>>> 8c738228d05785868ed8e26b3a4f127efb297a09
 Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'HouseController@index')->name('dashboard.index');

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Furniture
+use App\Furniture;
 
 class FurnituresTableSeeder extends Seeder
 {
@@ -12,12 +12,13 @@ class FurnituresTableSeeder extends Seeder
      */
     public function run()
     {
-        // Furniture::create([
-        //     'name' => 'Anita Springbed',
-        //     'width' => 2.0,
-        //     'height' => 0.5,
-        //     'length' => 2.0,
-        //     'price' => 100000,
-        // ])->;
+        Furniture::create([
+            'name' => 'Anita Springbed',
+            'width' => 2.0,
+            'height' => 0.5,
+            'length' => 2.0,
+            'price' => 100000,
+            'description' => 'Lorem ipsum dolor sit amet',
+        ]);
     }
 }

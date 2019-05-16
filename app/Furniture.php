@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Furniture extends Model
 {
+    public $table = "furnitures";
     protected $fillable = [
-        'name', 'width', 'height', 'length', 'price',
+        'name', 'width', 'height', 'length', 'price', 'description'
     ];
 
     public function rooms()

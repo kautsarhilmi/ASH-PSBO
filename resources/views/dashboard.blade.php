@@ -2,12 +2,20 @@
 
 @section('content')
 	<table>
-		@foreach ($houses as $house)
+		@guest
+
+		@else
 			@if ($houses)
-				<tr>
-	                <td>{{ $house->name }}</td>
-				</tr>
+				@foreach ($houses as $house)
+					<tr>
+	            	    <td>{{ $house->name }}</td>
+	            	    @foreach( {{$house->rooms as $room}} )
+	            	    	$room->name
+	            	    	@endforeach
+					</tr>
+				@endforeach
+			@else
 			@endif
-		@endforeach
+		@endguest
 	</table>
 @endsection
