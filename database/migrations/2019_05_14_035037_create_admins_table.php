@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFurnituresTable extends Migration
+class CreateAdminsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateFurnituresTable extends Migration
      */
     public function up()
     {
-        Schema::create('furnitures', function (Blueprint $table) {
+        Schema::create('admins', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
             $table->string('name');
-            $table->float('width');
-            $table->float('height');
-            $table->float('length');
-            $table->integer('price');
-            $table->string('description');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->timestamps();
+            $table->remembertoken();
         });
     }
 
@@ -32,6 +30,6 @@ class CreateFurnituresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('furniture');
+        Schema::dropIfExists('admins');
     }
 }

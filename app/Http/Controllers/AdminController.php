@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\House;
-use App\User;
+use App\Admin;
 use Illuminate\Http\Request;
-use Auth;
 
-class HouseController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +13,8 @@ class HouseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        $houses = Auth::user()->houses;
-        return view('dashboard', compact('houses'));
+    {
+        //
     }
 
     /**
@@ -27,7 +24,7 @@ class HouseController extends Controller
      */
     public function create()
     {
-        return view('create_house');
+        //
     }
 
     /**
@@ -37,46 +34,40 @@ class HouseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-        $user = Auth::user();
-        $house = new House;
-        $house->name = $request->name;
-        $user->houses()->save($house);
-        return redirect(route('dashboard.index'));
+    {
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\House  $house
+     * @param  \App\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Admin $admin)
     {
-        return redirect(route('house.detail'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\House  $house
+     * @param  \App\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function edit($house_id)
+    public function edit(Admin $admin)
     {
-        
-        $house = App\House::find($house_id);
-        return view('edit_house', compact('house'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\House  $house
+     * @param  \App\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, House $house)
+    public function update(Request $request, Admin $admin)
     {
         //
     }
@@ -84,12 +75,11 @@ class HouseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\House  $house
+     * @param  \App\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function destroy($house_id)
+    public function destroy(Admin $admin)
     {
-        App\House::destroy($house_id);
-        return redirect(route('dashboard.index'));
+        //
     }
 }
