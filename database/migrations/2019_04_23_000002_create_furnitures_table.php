@@ -21,6 +21,7 @@ class CreateFurnituresTable extends Migration
             $table->float('height');
             $table->float('length');
             $table->integer('price');
+            $table->string('description');
         });
     }
 

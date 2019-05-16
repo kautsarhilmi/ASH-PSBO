@@ -36,9 +36,9 @@ class HouseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $user_id)
+    public function store(Request $request)
     {   
-        $user = App\User::find($user_id);
+        $user = Auth::user();
         $house = new House;
         $house->name = $request->name;
         $user->houses()->save($house);
@@ -64,6 +64,7 @@ class HouseController extends Controller
      */
     public function edit(Request $request, $house_id)
     {
+        
         $house = App\House::find($house_id);
         $house->name = $request->name;
         $user->houses()->save($house);
