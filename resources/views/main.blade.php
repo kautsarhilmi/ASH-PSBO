@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(images/Banner.png);">
+<div class="bg-title-page p-t-40 p-b-40 flex-col-c-m" style="background-image: url(images/Banner.png);">
 		<h2 class="l-text2 t-center">
 			Make Your Own Room!
 		</h2>
@@ -53,10 +53,10 @@
 					</div>
 				</div>
 				<div class="col-sm-6 col-md-8 col-lg-9 p-b-50">
-					<div class="leftbar p-r-20 p-r-0-sm">	
-						<h4 class="m-text14 p-b-7">
-							Tempat Tidur
-						</h4>
+					<div class="leftbar p-r-20 p-r-0-sm">
+					<h4 class="m-text14 p-b-7">
+						Tempat Tidur
+					</h4>
 					</div>
 					<!-- Product -->
 					<div class="row">
@@ -158,11 +158,20 @@
 								</div>
 							</div>
 						</div>
+					</div>
+
+					<div class="leftbar p-r-20 p-r-0-sm">
+					<h4 class="m-text14 p-b-7">
+						Sofa
+					</h4>
+					</div>
+
+					<div class="row">
 						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
 							<!-- Block2 -->
 							<div class="block2">
-								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
-									<img src="images/item-07.jpg" alt="IMG-PRODUCT">
+								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
+									<img src="images/p4.png" alt="IMG-PRODUCT">
 
 									<div class="block2-overlay trans-0-4">
 										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
@@ -181,22 +190,20 @@
 
 								<div class="block2-txt p-t-20">
 									<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-										Frayed denim shorts
+										Fabric Queen Sofa
 									</a>
 
-									<span class="block2-oldprice m-text7 p-r-5">
-										$29.50
-									</span>
-
-									<span class="block2-newprice m-text8 p-r-5">
-										$15.90
+									<span class="block2-price m-text6 p-r-5">
+										$750.67
 									</span>
 								</div>
 							</div>
 						</div>
-
 					</div>
 				</div>
+
+				
+
 			</div>	
 		</div>	
 	</div>
