@@ -62,10 +62,12 @@ class HouseController extends Controller
      * @param  \App\House  $house
      * @return \Illuminate\Http\Response
      */
-    public function edit($house_id)
+    public function edit(Request $request, $house_id)
     {
         $house = App\House::find($house_id);
-        return view('edit_house', compact('house'));
+        $house->name = $request->name;
+        $user->houses()->save($house);
+        return redirect(route('dashboard.index'));
     }
 
     /**

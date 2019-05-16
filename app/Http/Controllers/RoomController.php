@@ -35,8 +35,9 @@ class RoomController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $house_id)
     {
+        $house = App\House::find($house_id);
         $room = new Room;
         $room->name = $request->name;
         $room->width = $request->width;
@@ -63,10 +64,15 @@ class RoomController extends Controller
      * @param  \App\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function edit($room_id)
+    public function edit(Request $request, $room_id)
     {
         $room = App\Room::find($room_id);
-        return view('edit_room', compact('room'));
+        $room->name = $request->name;
+        $room->width = $request->width;
+        $room->length = $request->length;
+        $room->height = $request->height;
+        $room->colour = $request->colour;
+        return redirect(route('room.index'));
     }
 
     /**
