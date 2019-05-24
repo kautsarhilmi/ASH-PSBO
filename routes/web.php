@@ -32,6 +32,7 @@ Route::get('home', function () {
 
 Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
+Route::post('/dashboard/create-new-house', 'HouseController@create')->name('create.house');
 Route::get('/dashboard', 'HouseController@index')->name('dashboard.index');
 Route::get('/house/{id}', 'RoomController@index');
 

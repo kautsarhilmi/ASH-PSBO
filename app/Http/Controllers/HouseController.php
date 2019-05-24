@@ -25,9 +25,15 @@ class HouseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $data)
     {
-        return view('create_house');
+        $house = new House([
+            'name' => $data['house-name'],
+        ]);
+        $user = Auth::user();
+        $user->houses()->save($house);
+
+        return redirect(route('dashboard.index'));
     }
 
     /**
