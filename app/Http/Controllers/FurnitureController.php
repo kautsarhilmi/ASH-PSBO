@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Furniture;
 use App\Room;
+use App\Tag;
 use Illuminate\Http\Request;
 
 class FurnitureController extends Controller
@@ -15,8 +16,15 @@ class FurnitureController extends Controller
      */
     public function index($room_id)
     {
-        $furnitures = App\Room::find($room_id)->furnitures;
+        $furnitures = Room::find($room_id)->furnitures;
         return view('detail_room', compact('furnitures'));
+    }
+
+    public function adminIndex()
+    {
+        $furnitures = Furniture::all();
+        $tags = Tag::all();
+        return view('admin/furniture', compact('furnitures', 'tags'));
     }
 
     /**
@@ -37,14 +45,18 @@ class FurnitureController extends Controller
      */
     public function store(Request $request)
     {
+        $tag = Tag::find($request->tag_id);
+
         $furniture = new Furniture;
         $furniture->name = $request->name;
         $furniture->width = $request->width;
         $furniture->height = $request->height;
         $furniture->length = $request->length;
-        $furniture->colour = $request->colour;
-        $furniture->type = $request->type;
         $furniture->price = $request->price;
+        $furniture->description = $request->description;
+        $furniture->save();
+        $furniture->tags()->attach($tag);
+        return redirect(route('admin.furniture'));
     }
 
     /**

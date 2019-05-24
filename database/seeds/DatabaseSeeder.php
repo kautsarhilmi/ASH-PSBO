@@ -15,6 +15,9 @@ class DatabaseSeeder extends Seeder
         // seeding the furnitures
         $this->call(FurnituresTableSeeder::class);
 
+        // seeding the tags
+        $this->call(TagsTableSeeder::class);
+
         // seeding the users, houses, and rooms table by creating room for each
         // house for each user
         factory(App\User::class, 3)->create()->each(function ($user) {

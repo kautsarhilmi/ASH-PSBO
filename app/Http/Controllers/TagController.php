@@ -17,6 +17,12 @@ class TagController extends Controller
         //
     }
 
+    public function adminIndex()
+    {
+        $tags = Tag::all();
+        return view('admin/tag', compact('tags'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -35,7 +41,10 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tag = new Tag;
+        $tag->name = $request->name;
+        $tag->save();
+        return redirect(route('admin.tag'));
     }
 
     /**

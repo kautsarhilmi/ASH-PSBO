@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Room;
 use App\House;
 use App\Furniture;
+use App\Tag;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
@@ -36,16 +37,19 @@ class RoomController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $house_id)
+    public function store(Request $request)
     {
-        $house = App\House::find($house_id);
+        $tag = Tag::find($request->tag_id);
+
+        $house = House::find($request->house_id);
         $room = new Room;
-        $room->name = $request->name;
-        $room->width = $request->width;
-        $room->length = $request->length;
-        $room->height = $request->height;
-        $room->colour = $request->colour;
-        return redirect(route('room.index'));
+        $room->name = $request->room_name;
+        $room->width = $request->room_width;
+        $room->length = $request->room_length;
+        $room->height = $request->room_height;
+        $house->rooms()->save($room);
+        $room->tags()->attach($tag);
+        return redirect(route('dashboard.index'));
     }
 
     /**

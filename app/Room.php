@@ -24,6 +24,6 @@ class Room extends Model
     }
     public function tags()
     {
-        return $this->belongsToMany('App\Furniture', 'room_tag', 'room_id', 'tag_id');
+        return $this->belongsToMany('App\Tag', 'room_tag', 'room_id', 'tag_id');
     }
 }

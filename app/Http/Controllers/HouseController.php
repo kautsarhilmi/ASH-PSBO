@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\House;
 use App\User;
+use App\Tag;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -17,7 +18,8 @@ class HouseController extends Controller
     public function index()
     {   
         $houses = Auth::user()->houses;
-        return view('dashboard', compact('houses'));
+        $tags = Tag::all();
+        return view('dashboard', compact('houses', 'tags'));
     }
 
     /**
@@ -27,13 +29,7 @@ class HouseController extends Controller
      */
     public function create(Request $data)
     {
-        $house = new House([
-            'name' => $data['house-name'],
-        ]);
-        $user = Auth::user();
-        $user->houses()->save($house);
-
-        return redirect(route('dashboard.index'));
+        //
     }
 
     /**
@@ -46,7 +42,7 @@ class HouseController extends Controller
     {   
         $user = Auth::user();
         $house = new House;
-        $house->name = $request->name;
+        $house->name = $request->house_name;
         $user->houses()->save($house);
         return redirect(route('dashboard.index'));
     }

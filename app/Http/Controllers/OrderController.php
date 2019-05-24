@@ -17,6 +17,12 @@ class OrderController extends Controller
         //
     }
 
+    public function adminIndex()
+    {
+        $orders = Order::all();
+        return view('admin/order', compact('orders'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

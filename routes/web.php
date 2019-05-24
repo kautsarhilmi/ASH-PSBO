@@ -31,10 +31,21 @@ Route::get('home', function () {
 });
 
 Auth::routes();
+
+Route::prefix('admin')->group(function() {
+	Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
+	Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
+    Route::post('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
+    Route::get('/', 'AdminController@redirectToFurniture')->name('admin');
+    Route::get('/furniture', 'FurnitureController@adminIndex')->name('admin.furniture');
+    Route::post('/furniture/create-new-furniture', 'FurnitureController@store')->name('admin.furniture.store');
+    Route::post('/tag/create-new-tag', 'TagController@store')->name('admin.tag.store');
+    Route::get('/order', 'OrderController@adminIndex')->name('admin.order');
+    Route::get('/tag', 'TagController@adminIndex')->name('admin.tag');
+});
+
 Route::get('/', 'HomeController@index')->name('home');
-Route::post('/dashboard/create-new-house', 'HouseController@create')->name('create.house');
+Route::post('/dashboard/store-new-house', 'HouseController@store')->name('house.store');
+Route::post('/dashboard/store-new-room', 'RoomController@store')->name('room.store');
 Route::get('/dashboard', 'HouseController@index')->name('dashboard.index');
 Route::get('/house/{id}', 'RoomController@index');
-
-Route::post('/login/admin', 'Auth\LoginController@adminlogin');
-Route::get('/login/admin', 'Auth\LoginController@adminloginform');

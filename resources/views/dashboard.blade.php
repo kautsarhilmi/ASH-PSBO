@@ -4,9 +4,124 @@
 	<div class="bgwhite p-t-55 p-b-65">
 		<div class="container">
 			<div class="row">
+				<div class="col-sm-6 col-md-3 col-lg- p-5-50">
+					<div class="leftbar p-r-0 p-r-0-sm">
+						<h4 class="m-text14">
+						<button type="button" class="btn login_btn1" data-toggle="modal" data-target="#CreateNewHouseModal">{{ __('+ Create New House') }}</button>
+						</h4>
+						@if ($houses)
+						@foreach ($houses as $house)
+
+
+						<div class="modal fade" style="margin-top: 100px;" id="CreateNewRoomModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+						    <form method="POST" action="{{ route('room.store') }}">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="exampleModalLabel">Create new room</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						      	@csrf
+						        <div class="input-group form-group">
+		                            <input id="room_name" type="text" class="form-control{{ $errors->has('room_name') ? ' is-invalid' : '' }}" placeholder="{{ __('Room name') }}" name="room_name" value="{{ old('room_name') }}" required autofocus>
+
+		                            @if ($errors->has('room_name'))
+		                                <span class="invalid-feedback" role="alert">
+		                                    <strong>{{ $errors->first('room_name') }}</strong>
+		                                </span>
+		                            @endif
+		                        </div>
+		                        <div class="input-group form-group">
+		                            <input id="room_width" type="number" class="form-control{{ $errors->has('room_width') ? ' is-invalid' : '' }}" placeholder="{{ __('Width') }}" name="room_width" value="{{ old('room_width') }}" required autofocus>
+
+		                            @if ($errors->has('room_width'))
+		                                <span class="invalid-feedback" role="alert">
+		                                    <strong>{{ $errors->first('room_width') }}</strong>
+		                                </span>
+		                            @endif
+		                            
+		                        </div>
+		                        <div class="input-group form-group">
+		                            <input id="room_length" type="number" class="form-control{{ $errors->has('room_length') ? ' is-invalid' : '' }}" placeholder="{{ __('Room Length') }}" name="room_length" value="{{ old('room_length') }}" required autofocus>
+
+		                            @if ($errors->has('room_length'))
+		                                <span class="invalid-feedback" role="alert">
+		                                    <strong>{{ $errors->first('room_length') }}</strong>
+		                                </span>
+		                            @endif
+		                        </div>
+		                        <div class="input-group form-group">
+		                            <input id="room_height" type="number" class="form-control{{ $errors->has('room_height') ? ' is-invalid' : '' }}" placeholder="{{ __('Room Height') }}" name="room_height" value="{{ old('room_height') }}" required autofocus>
+
+		                            @if ($errors->has('room_height'))
+		                                <span class="invalid-feedback" role="alert">
+		                                    <strong>{{ $errors->first('room_height') }}</strong>
+		                                </span>
+		                            @endif
+		                        </div>
+		                        <div class="input-group form-group">
+		                            <label for="tag_id">Select tag:</label>
+								      <select class="form-control" id="tag_id" name="tag_id">
+								      	@foreach ($tags as $tag)
+								      		<option value="{{ $tag->id }}">{{ $tag->name }}</option>
+								      	@endforeach
+								      </select>
+		                        </div>
+		                        <div class="input-group form-group">
+		                            <input id="house_id" name="house_id" value="{{ $house->id }}" hidden>
+		                        </div>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						      	<div class="form-group">
+								<input type="submit" value="{{ __('Create') }}" class="btn float-right btn-primary">
+		                        </div>
+						      </div>
+						  	  </div>
+						      </form>
+						    </div>
+							</div>
+
+
+						<button class="dropdown-btn btn-sm m-text14">{{ $house->name }}
+							<i class="fa fa-caret-down"></i>
+						</button>
+						<!-- <h4 class="m-text14">
+							{{ $house->name }}
+						</h4> -->
+
+						<!-- list ruangan -->
+						<div class="dropdown-container">
+							<h4 class="m-text14">
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CreateNewRoomModal">{{ __('+ Create New Room') }}</button>
+							</h4>
+							<ul class="p-b-30">
+							@foreach ($house->rooms as $room)
+							<li class="p-t-2">
+								<a href="#" class="s-text13 active1">
+									&nbsp &nbsp &nbsp {{$room->name}}
+								</a>
+							</li>
+							@endforeach
+							</ul>
+						</div>
+						@endforeach
+						@else
+						@endif
+					</div>
+					
+				</div>
+				<div class="col-sm-6 col-md-3 col-lg- p-5-50">
+					<!-- untuk detail ruangan -->
+				</div>
+			</div>
+			
 				<div class="modal fade" style="margin-top: 300px;" id="CreateNewHouseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog" role="document">
-				    <form method="POST" action="{{ route('create.house') }}">
+				    <form method="POST" action="{{ route('house.store') }}">
 				    <div class="modal-content">
 				      <div class="modal-header">
 				        <h5 class="modal-title" id="exampleModalLabel">Create new house</h5>
@@ -17,17 +132,13 @@
 				      <div class="modal-body">
 				      	@csrf
 				        <div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-user"></i></span>
-                        </div> 
-                            <input id="house-name" type="text" class="form-control{{ $errors->has('house-name') ? ' is-invalid' : '' }}" placeholder="{{ __('House name') }}" name="house-name" value="{{ old('house-name') }}" required autofocus>
+                            <input id="house_name" type="text" class="form-control{{ $errors->has('house_name') ? ' is-invalid' : '' }}" placeholder="{{ __('House name') }}" name="house_name" value="{{ old('house_name') }}" required autofocus>
 
-                            @if ($errors->has('house-name'))
+                            @if ($errors->has('house_name'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('house-name') }}</strong>
+                                    <strong>{{ $errors->first('house_name') }}</strong>
                                 </span>
-                            @endif
-                            
+                            @endif                            
                         </div>
 				      </div>
 				      <div class="modal-footer">
@@ -36,46 +147,12 @@
 						<input type="submit" value="{{ __('Create') }}" class="btn float-right btn-primary">
                         </div>
 				      </div>
+				  	  </div>
 				      </form>
 				    </div>
 				</div>
-				</div>
-				<div class="col-sm-6 col-md-3 col-lg- p-5-50">
-					<div class="leftbar p-r-0 p-r-0-sm">
-						<h4 class="m-text14">
-						<button type="button" class="btn login_btn1" data-toggle="modal" data-target="#CreateNewHouseModal">{{ __('+ Create New House') }}</button>
-						</h4>
-						@if ($houses)
-						@foreach ($houses as $house)
-				
-						<button class="dropdown-btn btn-sm m-text14">{{ $house->name }}
-							<i class="fa fa-caret-down"></i>
-							</button>
-						<!-- <h4 class="m-text14">
-							{{ $house->name }}
-						</h4> -->
 
-						<!-- list ruangan -->
-						<div class="dropdown-container">
-							<ul class="p-b-30">
-							@foreach ($house->rooms as $room)
-							<li class="p-t-2">
-								<a href="#" class="s-text13 active1">
-									&nbsp &nbsp &nbsp {{$room->name}}
-								</a>
-							</li>
-							@endforeach
-							</ul> 
-						</div>
-						@endforeach
-						@else
-						@endif
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-3 col-lg- p-5-50">
-					<!-- untuk detail ruangan -->
-				</div>
-			</div>
+				
 		</div>
 	</div>				
 @endsection

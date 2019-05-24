@@ -7,6 +7,16 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
+    public function redirectToFurniture()
+    {   
+        return redirect()->route('admin.furniture');
+    }
+
     /**
      * Display a listing of the resource.
      *

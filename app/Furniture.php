@@ -22,7 +22,7 @@ class Furniture extends Model
     }
     public function tags()
     {
-        return $this->belongsToMany('App\Furniture', 'furniture_tag', 'tag_id', 'furniture_id')
+        return $this->belongsToMany('App\Tag', 'furniture_tag', 'furniture_id', 'tag_id')
             ->withTimestamps();
     }
 }
