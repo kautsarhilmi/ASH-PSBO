@@ -91,6 +91,7 @@ class FurnitureController extends Controller
      */
     public function destroy(Furniture $furniture)
     {
-        //
+        App\Furniture::destroy($furniture_id);
+        return redirect(route('home'));
     }
 }

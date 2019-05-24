@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Room;
 use App\House;
+use App\Furniture;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
@@ -97,5 +98,11 @@ class RoomController extends Controller
     {
         App\Room::destroy($room_id);
         return redirect(route('house.detail'));
+    }
+
+    public function add ($furniture_id)
+    {
+        App\Room::find($room_id);
+        App\Room::add($furniture_id)->furnitures;
     }
 }
