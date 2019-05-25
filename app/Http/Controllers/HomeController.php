@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use App\House;
 use App\Room;
 use App\Furniture;
 use App\Tag;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -28,13 +31,25 @@ class HomeController extends Controller
     {
         $tags = Tag::all();
         $furnitures = Furniture::all();
-        return view('main',compact('furnitures','tags'));
+        $houses = Auth::user()->houses;
+        return view('main',compact('furnitures','tags', 'houses'));
     }
 
-    public function add($furniture_id, $room_id)
+    public function add(Request $request)
     {
-       $room = Room::find($room_id);
-       $furniture = Furniture::find($furniture_id);
-       $room->furnitures()->attach($furniture, ['quantity'=>$quantity]);
+       $room = Room::find($request->room_id);
+       $furniture = Furniture::find($request->furniture_id);
+       $room->furnitures()->attach($furniture, ['quantity'=>$request->quantity]);
+
+       return redirect(route('home'));
     }
+
+    public function getRooms($houseId=0){
+
+        // Fetch Room by house_id to populate the dropdown
+        $userData['data'] = DB::table('rooms')->where('house_id', $houseId)->get();;
+
+        echo json_encode($userData);
+        exit;
+   }
 }

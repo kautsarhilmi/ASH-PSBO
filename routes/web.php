@@ -45,6 +45,8 @@ Route::prefix('admin')->group(function() {
 });
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/getRooms/{id}', 'HomeController@getRooms');
+Route::post('/add-furniture', 'HomeController@add')->name('room.add.furniture');
 Route::post('/dashboard/store-new-house', 'HouseController@store')->name('house.store');
 Route::post('/dashboard/store-new-room', 'RoomController@store')->name('room.store');
 Route::get('/dashboard', 'HouseController@index')->name('dashboard.index');
