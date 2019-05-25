@@ -13,10 +13,10 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         // seeding the furnitures
-       // $this->call(FurnituresTableSeeder::class);
+       $this->call(FurnituresTableSeeder::class);
 
         // seeding the tags
-       // $this->call(TagsTableSeeder::class);
+       $this->call(TagsTableSeeder::class);
 
         // seeding the users, houses, and rooms table by creating room for each
         // house for each user
