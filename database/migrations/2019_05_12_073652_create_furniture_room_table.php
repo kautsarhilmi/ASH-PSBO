@@ -17,6 +17,7 @@ class CreateFurnitureRoomTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('furniture_id');
             $table->unsignedBigInteger('room_id');
+            $table->unsignedBigInteger('quantity');
             $table->foreign('furniture_id')->references('id')->on('furnitures');
             $table->foreign('room_id')->references('id')->on('rooms');
             $table->timestamps();

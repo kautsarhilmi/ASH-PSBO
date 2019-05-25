@@ -17,6 +17,7 @@ class CreateFurnitureOrderTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('furniture_id');
             $table->unsignedBigInteger('order_id');
+            $table->unsignedBigInteger('quantity');
             $table->foreign('furniture_id')->references('id')->on('furnitures');
             $table->foreign('order_id')->references('id')->on('orders');
             $table->timestamps();
