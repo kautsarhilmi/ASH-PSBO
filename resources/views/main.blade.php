@@ -20,35 +20,13 @@
 						</h4>
 
 						<ul class="p-b-54">
+							@foreach($tags as $tag)
 							<li class="p-t-4">
 								<a href="#" class="s-text13 active1">
-									Bed Room
+									{{$tag->name}}
 								</a>
 							</li>
-
-							<li class="p-t-4">
-								<a href="#" class="s-text13">
-									Living Room
-								</a>
-							</li>
-
-							<li class="p-t-4">
-								<a href="#" class="s-text13">
-									Kitchen
-								</a>
-							</li>
-
-							<li class="p-t-4">
-								<a href="#" class="s-text13">
-									Bathroom
-								</a>
-							</li>
-
-							<li class="p-t-4">
-								<a href="#" class="s-text13">
-									Out Door
-								</a>
-							</li>
+							@endforeach
 						</ul>
 					</div>
 				</div>
