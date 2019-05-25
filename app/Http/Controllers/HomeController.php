@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Room;
 use App\Furniture;
+use App\Tag;
 
 class HomeController extends Controller
 {
@@ -25,14 +26,15 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $tags = Tag::all();
         $furnitures = Furniture::all();
-        return view('main',compact('furnitures'));
+        return view('main',compact('furnitures','tags'));
     }
 
     public function add($furniture_id, $room_id)
     {
        $room = Room::find($room_id);
        $furniture = Furniture::find($furniture_id);
-       $room->furnitures()->new($furniture);
+       $room->furnitures()->attach($furniture, ['quantity'=>$quantity]);
     }
 }
