@@ -12,8 +12,8 @@
 // Route::get('dashboard-page', function () {
 //     return view('dashboard');
 // });
-Route::get('promo', function () {
-    return view('promo');
+Route::get('recommendation', function () {
+    return view('recommendation');
 });
 Route::get('about', function () {
     return view('about');
@@ -49,3 +49,5 @@ Route::post('/dashboard/store-new-house', 'HouseController@store')->name('house.
 Route::post('/dashboard/store-new-room', 'RoomController@store')->name('room.store');
 Route::get('/dashboard', 'HouseController@index')->name('dashboard.index');
 Route::get('/house/{id}', 'RoomController@index');
+Route::post('/login/admin', 'Auth\LoginController@adminlogin');
+Route::get('/login/admin', 'Auth\LoginController@adminloginform');
