@@ -79,7 +79,7 @@
 		                            @endif
 		                        </div>
 		                        <div class="input-group form-group">
-								      <input id="furniture_id" name="furniture_id" value="{{ $furniture->id }}">
+								      <input id="furniture_id" name="furniture_id" value="{{ $furniture->id }}" hidden>
 		                        </div>
 						      </div>
 						      <div class="modal-footer">
